@@ -12,7 +12,7 @@ public class BooksEndpointTests(AppFactory factory) : IntegrationTestBase(factor
         // Arrange
         await ClearDatabase();
         // Act
-        var response = await Client.GetAsync("/api/books");
+        var response = await Client.GetAsync("/api/books?page=1&size=10");
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
         var books = await response.Content.ReadFromJsonAsync<List<BookResponse>>();
@@ -24,14 +24,14 @@ public class BooksEndpointTests(AppFactory factory) : IntegrationTestBase(factor
     {
         // Arrange
         await ClearDatabase();
-        Book book1 = new ("The Great Gatsby", "F. Scott Fitzgerald", new DateTime(1925, 4, 10));
+        Book book1 = new ("The Great Gatsby", "Francis Scott Fitzgerald", new DateTime(1925, 4, 10));
         Book book2 = new("1984", "George Orwell", new DateTime(1949, 6, 8));
         DbContext.Books.AddRange(book1, book2);
         await DbContext.SaveChangesAsync();
         // Act
-        var response = await Client.GetAsync("/api/books");
+        var response = await Client.GetAsync("/api/books?page=1&size=10");
         // Assert
-        response.StatusCode.Should().Be(HttpStatusCode.Created);
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
         var books = await response.Content.ReadFromJsonAsync<List<BookResponse>>();
         books.Should().NotBeNull();
         books.Should().HaveCount(2);
