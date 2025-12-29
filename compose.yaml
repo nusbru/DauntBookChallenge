@@ -1,0 +1,29 @@
+﻿services:
+  app:
+    image: daunt.app
+    build:
+      context: .
+      dockerfile: src/Daunt.App/Dockerfile
+  
+  postgres:
+    image: postgres:16-alpine
+    container_name: daunt-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: DauntDB
+      POSTGRES_USER: daunt_user
+      POSTGRES_PASSWORD: daunt_pass
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - daunt_data:/var/lib/postgresql/data/pgdata
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U daunt_user -d DauntDB" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - daunt-network
+  
+  
