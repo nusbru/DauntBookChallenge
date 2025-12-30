@@ -40,8 +40,7 @@ public class Book : EntityBase
 
         if (string.IsNullOrWhiteSpace(author))
             results.Add(new ValidationPropertyResult(nameof(author), $"Author cannot be null or empty"));
-
-        if (!IsValidAuthor(author))
+        else if (!IsValidAuthor(author))
             results.Add(new ValidationPropertyResult(nameof(author),
                 $"Author contains invalid characters. Only letters and spaces are allowed."));
 
