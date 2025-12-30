@@ -3,7 +3,7 @@ using Daunt.Core.Entity;
 
 namespace Daunt.App.Helper;
 
-public static class Map
+public static class Mapper
 {
     public static BookResponse ToBookResponse(this Book book) =>
         new()

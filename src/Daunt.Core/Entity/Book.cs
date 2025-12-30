@@ -5,8 +5,8 @@ namespace Daunt.Core.Entity;
 
 public class Book : EntityBase
 {
-    public string Title { get; init; } = string.Empty;
-    public string Author { get; init; } = string.Empty;
+    public string Title { get; init; } 
+    public string Author { get; init; }
     public DateTime PublishedDate { get; init; }
 
     private Book()

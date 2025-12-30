@@ -1,8 +1,8 @@
 using Daunt.App.Http;
 using Daunt.Core.Repository;
 using Daunt.Core.Service;
-using Daunt.Persistence;
 using Daunt.Persistence.Context;
+using Daunt.Persistence.Repository;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 

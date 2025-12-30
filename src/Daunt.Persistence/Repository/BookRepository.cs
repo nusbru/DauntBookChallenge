@@ -3,7 +3,7 @@ using Daunt.Core.Repository;
 using Daunt.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Daunt.Persistence;
+namespace Daunt.Persistence.Repository;
 
 public class BookRepository(DauntDbContext context) : IBookRepository
 {
